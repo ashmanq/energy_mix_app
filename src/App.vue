@@ -1,11 +1,14 @@
 <template>
   <div id="app">
-    <p>{{ energymix }}</p>
+    <h1>Energy Mix App</h1>
+    <!-- <p>{{ energymix }}</p> -->
+    <detail-view v-if="energymix" :energymix="energymix"></detail-view>
   </div>
 </template>
 
 <script>
 
+import Details from './components/Details.vue';
 
 export default {
   name: 'App',
@@ -17,10 +20,10 @@ export default {
   mounted(){
     fetch('https://api.carbonintensity.org.uk/generation')
     .then(response => response.json())
-    .then(data => this.energymix = data)
+    .then(result => this.energymix = result.data)
   },
   components: {
-
+    "detail-view": Details
   }
 }
 </script>
