@@ -6,7 +6,7 @@
 
     <section class="detail">
       <form-view></form-view>
-      <detail-view v-if="energymix" :energymix="energymix"></detail-view>
+      <!-- <detail-view v-if="energymix" :energymix="energymix"></detail-view> -->
 
     </section>
     <section class="graph">
@@ -56,16 +56,22 @@ h1 {
 }
 .container {
   display:flex;
+  align-items: center;
+  flex-direction: column;
 
-  justify-content: space-around;
-  /* flex-direction: column; */
 }
  .detail{
    /* width:50%; */
  }
  .graph{
-   display: flex;
-   /* width:100%; */
+   /* display: flex; */
+
+   align-content: center;
+   margin: 50px;
+   width:90%;
+   margin: auto;
+   min-height: 1000px;
+   flex:1;
  }
 /* #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

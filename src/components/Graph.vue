@@ -1,6 +1,6 @@
 <template lang="html">
   <GChart
-    type="ColumnChart"
+    v-bind:type="chartType"
     :data="chartData"
     :options="chartOptions"
 
@@ -16,7 +16,8 @@ export default {
   data() {
     return {
       inputData: this.graphData,
-      chartData: this.populateChart(),
+      chartType: "PieChart",
+      // chartData: this.populateChart(),
       chartOptions: {
         chart: {
           title: 'Energy Mix',
@@ -25,29 +26,41 @@ export default {
       }
     };
   },
-  methods: {
-    populateChart: function(){
-      const input = [];
-      // if(Array.isArray(this.graphData)==false){
-      input.push([["Fuel", "%"]]);
-      this.graphData.generationmix.forEach((item, i) => {
-        input.push([item.fuel, item.perc]);
-      });
-    // }
-    // else {
-    //   input.push([["Day", "Fuel", "%" ]]);
-    //   this.graphData.forEach((item, i) => {
-    //     item.forEach((item, i) => {
-    //       input.push([item.from, item.fuel, item.perc])
-    //     });
-    //
-    //   });
-    //
-    // }
-    return input;
-  }
+  computed: {
+    chartData: function(){
+      if(Array.isArray(this.graphData)==false){
+        const input = ([["Fuel", "%"]]);
+        this.graphData.generationmix.forEach((item, i) => {
+          input.push([item.fuel, item.perc]);
+        });
+      return input;
+      }
+      else {
+        // a data table type variable is created (for Google charts object)
+        const data = new google.visualization.DataTable();
+
+        this.chartType = "LineChart";
+        data.addColumn('date', 'Date');
+
+        this.graphData[0].generationmix.forEach((item, i) => {
+          data.addColumn('number', item.fuel);
+        });
 
 
+        this.graphData.forEach((item, i) => {
+          const date = new Date(item.from);
+          const row=[date];
+          item.generationmix.forEach((daygen, i) => {
+            row.push(daygen.perc);
+          });
+          data.addRow(row);
+
+        });
+        console.log(data);
+        return data;
+
+      }
+    }
   },
 
   components: {
