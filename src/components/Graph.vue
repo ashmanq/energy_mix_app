@@ -21,7 +21,9 @@ export default {
       chartOptions: {
         chart: {
           title: 'Energy Mix',
-          subtitle: '%'
+          subtitle: '%',
+          width:800,
+          height:800
         }
       }
     };

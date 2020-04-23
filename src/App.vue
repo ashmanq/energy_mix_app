@@ -64,21 +64,17 @@ h1 {
    /* width:50%; */
  }
  .graph{
-   /* display: flex; */
-
    align-content: center;
    margin: 50px;
    width:90%;
    margin: auto;
-   min-height: 1000px;
-   flex:1;
  }
-/* #app {
+#app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-} */
+}
 </style>
