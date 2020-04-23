@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-
+    <p>{{ energymix }}</p>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
   mounted(){
     fetch('https://api.carbonintensity.org.uk/generation')
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => this.energymix = data)
   },
   components: {
 
