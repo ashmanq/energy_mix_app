@@ -27,14 +27,25 @@ export default {
   },
   methods: {
     populateChart: function(){
-      const input = [["Fuel", "%"]];
+      const input = [];
+      // if(Array.isArray(this.graphData)==false){
+      input.push([["Fuel", "%"]]);
       this.graphData.generationmix.forEach((item, i) => {
         input.push([item.fuel, item.perc]);
       });
-
-      console.log(input);
-      return input;
-    }
+    // }
+    // else {
+    //   input.push([["Day", "Fuel", "%" ]]);
+    //   this.graphData.forEach((item, i) => {
+    //     item.forEach((item, i) => {
+    //       input.push([item.from, item.fuel, item.perc])
+    //     });
+    //
+    //   });
+    //
+    // }
+    return input;
+  }
 
 
   },

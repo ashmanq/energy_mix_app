@@ -5,6 +5,7 @@
 
 
     <section class="detail">
+      <form-view></form-view>
       <detail-view v-if="energymix" :energymix="energymix"></detail-view>
 
     </section>
@@ -19,6 +20,8 @@
 
 import Details from './components/Details.vue';
 import Graph from './components/Graph.vue';
+import Form from './components/Form.vue';
+import {eventBus} from './main.js';
 
 export default {
   name: 'App',
@@ -30,11 +33,19 @@ export default {
   mounted(){
     fetch('https://api.carbonintensity.org.uk/generation')
     .then(response => response.json())
-    .then(result => this.energymix = result.data)
+    .then(result => this.energymix = result.data);
+
+    eventBus.$on('dates', (dates) => {
+      fetch(`https://api.carbonintensity.org.uk/generation/${dates.startDate}/${dates.endDate}`)
+      .then(response => response.json())
+      .then(result => this.energymix = result.data);
+    });
   },
+
   components: {
     "detail-view": Details,
-    "graph-view": Graph
+    "graph-view": Graph,
+    "form-view": Form
   }
 }
 </script>
