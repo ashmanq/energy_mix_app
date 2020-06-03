@@ -1,4 +1,5 @@
-# energy_mix_lab
+# Energy Mix App
+This app displays the energy mix of the energy sources the UK derives its energy from. It communicates with the National Grid API to do this. The app uses the Vue Google Charts library to display this information in a pie chart and line graph.
 
 ## Project setup
 ```
